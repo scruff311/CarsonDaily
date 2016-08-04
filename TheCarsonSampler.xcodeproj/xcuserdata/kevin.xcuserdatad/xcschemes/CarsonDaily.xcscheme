@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0A82E33B1D535FF000D6826F"
-               BuildableName = "CarsonDaily.app"
-               BlueprintName = "CarsonDaily"
-               ReferencedContainer = "container:CarsonDaily.xcodeproj">
+               BuildableName = "TheCarsonSampler.app"
+               BlueprintName = "TheCarsonSampler"
+               ReferencedContainer = "container:TheCarsonSampler.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A82E33B1D535FF000D6826F"
-            BuildableName = "CarsonDaily.app"
-            BlueprintName = "CarsonDaily"
-            ReferencedContainer = "container:CarsonDaily.xcodeproj">
+            BuildableName = "TheCarsonSampler.app"
+            BlueprintName = "TheCarsonSampler"
+            ReferencedContainer = "container:TheCarsonSampler.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A82E33B1D535FF000D6826F"
-            BuildableName = "CarsonDaily.app"
-            BlueprintName = "CarsonDaily"
-            ReferencedContainer = "container:CarsonDaily.xcodeproj">
+            BuildableName = "TheCarsonSampler.app"
+            BlueprintName = "TheCarsonSampler"
+            ReferencedContainer = "container:TheCarsonSampler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0A82E33B1D535FF000D6826F"
-            BuildableName = "CarsonDaily.app"
-            BlueprintName = "CarsonDaily"
-            ReferencedContainer = "container:CarsonDaily.xcodeproj">
+            BuildableName = "TheCarsonSampler.app"
+            BlueprintName = "TheCarsonSampler"
+            ReferencedContainer = "container:TheCarsonSampler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

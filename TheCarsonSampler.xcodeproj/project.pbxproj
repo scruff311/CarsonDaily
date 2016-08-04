@@ -23,7 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0A82E33C1D535FF000D6826F /* CarsonDaily.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarsonDaily.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A82E33C1D535FF000D6826F /* TheCarsonSampler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheCarsonSampler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A82E33F1D535FF000D6826F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A82E3411D535FF000D6826F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0A82E3441D535FF000D6826F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		0A82E33D1D535FF000D6826F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0A82E33C1D535FF000D6826F /* CarsonDaily.app */,
+				0A82E33C1D535FF000D6826F /* TheCarsonSampler.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -115,9 +115,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0A82E33B1D535FF000D6826F /* CarsonDaily */ = {
+		0A82E33B1D535FF000D6826F /* TheCarsonSampler */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0A82E34E1D535FF000D6826F /* Build configuration list for PBXNativeTarget "CarsonDaily" */;
+			buildConfigurationList = 0A82E34E1D535FF000D6826F /* Build configuration list for PBXNativeTarget "TheCarsonSampler" */;
 			buildPhases = (
 				0A82E3381D535FF000D6826F /* Sources */,
 				0A82E3391D535FF000D6826F /* Frameworks */,
@@ -127,9 +127,9 @@
 			);
 			dependencies = (
 			);
-			name = CarsonDaily;
+			name = TheCarsonSampler;
 			productName = CarsonDaily;
-			productReference = 0A82E33C1D535FF000D6826F /* CarsonDaily.app */;
+			productReference = 0A82E33C1D535FF000D6826F /* TheCarsonSampler.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -147,7 +147,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0A82E3371D535FF000D6826F /* Build configuration list for PBXProject "CarsonDaily" */;
+			buildConfigurationList = 0A82E3371D535FF000D6826F /* Build configuration list for PBXProject "TheCarsonSampler" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -160,7 +160,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0A82E33B1D535FF000D6826F /* CarsonDaily */,
+				0A82E33B1D535FF000D6826F /* TheCarsonSampler */,
 			);
 		};
 /* End PBXProject section */
@@ -307,8 +307,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CarsonDaily/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonDaily;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonSampler;
+				PRODUCT_NAME = TheCarsonSampler;
 			};
 			name = Debug;
 		};
@@ -318,15 +318,15 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CarsonDaily/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonDaily;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonSampler;
+				PRODUCT_NAME = TheCarsonSampler;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0A82E3371D535FF000D6826F /* Build configuration list for PBXProject "CarsonDaily" */ = {
+		0A82E3371D535FF000D6826F /* Build configuration list for PBXProject "TheCarsonSampler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A82E34C1D535FF000D6826F /* Debug */,
@@ -335,7 +335,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0A82E34E1D535FF000D6826F /* Build configuration list for PBXNativeTarget "CarsonDaily" */ = {
+		0A82E34E1D535FF000D6826F /* Build configuration list for PBXNativeTarget "TheCarsonSampler" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0A82E34F1D535FF000D6826F /* Debug */,
