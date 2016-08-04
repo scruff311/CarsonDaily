@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Linkin Park</key>
+	<dict>
+		<key>Faint</key>
+		<dict>
+			<key>Order</key>
+			<array>
+				<string>Intro</string>
+			</array>
+			<key>Tempo</key>
+			<integer>135</integer>
+			<key>Intro</key>
+			<string>Faint-Intro.mp3</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
