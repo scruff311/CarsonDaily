@@ -9,11 +9,20 @@
 			<key>Order</key>
 			<array>
 				<string>Intro</string>
+				<string>Verse 1</string>
+				<string>Verse 2</string>
+				<string>Breakdown</string>
 			</array>
 			<key>Tempo</key>
 			<integer>135</integer>
 			<key>Intro</key>
 			<string>Faint-Intro.mp3</string>
+			<key>Verse 1</key>
+			<string>Faint-Verse.mp3</string>
+			<key>Verse 2</key>
+			<string>Faint-Verse.mp3</string>
+			<key>Breakdown</key>
+			<string>Faint-Breakdown.mp3</string>
 		</dict>
 	</dict>
 </dict>

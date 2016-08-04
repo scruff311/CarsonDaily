@@ -12,14 +12,16 @@ class Sample: NSObject {
     
     var title: String!
     var fileName: String!
+    var order: Int!
     var fileUrl: NSURL!
 
-    convenience init(_ title: String, fileName: String)
+    convenience init(_ title: String, fileName: String, order: Int)
     {
         self.init()
         
         self.title = title
         self.fileName = fileName
+        self.order = order
         
         // get file URL
         let samplePieces = fileName.componentsSeparatedByString(".")

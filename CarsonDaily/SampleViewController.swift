@@ -7,14 +7,17 @@
 //
 
 import UIKit
+import QuartzCore
 import AVFoundation
 
-class SampleViewController: UIViewController {
+class SampleViewController: UIViewController, AVAudioPlayerDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tempoButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
+    @IBOutlet weak var sampleTempoLbl: UILabel!
+    @IBOutlet weak var tapTempoLabel: UILabel!
     
     var songTitle: String!
     var sampleDict: [String: AnyObject]!
@@ -22,8 +25,11 @@ class SampleViewController: UIViewController {
     var currentSample: Sample?
     var audioPlayer: AVAudioPlayer!
     var defaultTempo: Double!
+    var lastTapTempo: Double!
     var lastTapTime: NSDate!
     var tapIntervals: [Double]!
+    
+    // MARK: - View
     
     override func viewDidLoad()
     {
@@ -34,12 +40,22 @@ class SampleViewController: UIViewController {
         self.navigationItem.title = songTitle
         navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         
+        sampleTempoLbl.layer.masksToBounds = true
+        sampleTempoLbl.layer.cornerRadius = 5
+        tapTempoLabel.layer.masksToBounds = true
+        tapTempoLabel.layer.cornerRadius = 5
+        
         // create array of sample objects
         defaultTempo = sampleDict["Tempo"] as! Double
+        lastTapTempo = defaultTempo
+        sampleTempoLbl.text = String(defaultTempo)
+        tapTempoLabel.text = ""
+        
         let sampleOrder = sampleDict["Order"] as! [String]
-        for sampleTitle in sampleOrder {
+        for i in 0 ..< sampleOrder.count {
+            let sampleTitle = sampleOrder[i]
             let fileName = sampleDict[sampleTitle] as! String
-            let newSample = Sample(sampleTitle, fileName: fileName)
+            let newSample = Sample(sampleTitle, fileName: fileName, order: i)
             if sampleArray == nil {
                 sampleArray = [newSample]
             }
@@ -56,13 +72,16 @@ class SampleViewController: UIViewController {
     override func viewDidAppear(animated: Bool)
     {
         print("VDA")
-        print("current sample: \(currentSample?.fileName)")
+        let path = NSIndexPath(forRow: 0, inSection: 0)
+        self.tableView.selectRowAtIndexPath(path, animated: true, scrollPosition: UITableViewScrollPosition.None)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    // MARK: - Buttons
     
     @IBAction func tempoTouch(sender: AnyObject)
     {
@@ -96,6 +115,13 @@ class SampleViewController: UIViewController {
             }
             else {
                 tempoButton.setTitle("GO!", forState: UIControlState.Normal)
+                var averageBeat = calculateTempo()
+                lastTapTempo = averageBeat
+                // trim decimal for label display
+                averageBeat *= 10
+                let beatInt = Int(averageBeat)
+                let beatFloat = Float(beatInt) / 10.0
+                tapTempoLabel.text = String(beatFloat)
                 print("4")
             }
             
@@ -104,15 +130,7 @@ class SampleViewController: UIViewController {
         else {
             print("GO!")
             print(tapIntervals)
-            
-            var totalTime: Double = 0
-            for time in tapIntervals {
-                totalTime += time
-            }
-            
-            let averageBeat = 60.0 / (totalTime / Double(tapIntervals.count))
-            print("tempo: \(averageBeat)")
-            
+            let averageBeat = calculateTempo()
             playAudio(Float(averageBeat/defaultTempo))
             
             tapIntervals.removeAll()
@@ -123,12 +141,24 @@ class SampleViewController: UIViewController {
     
     @IBAction func playTouch(sender: AnyObject)
     {
-        playAudio(1.0)
+        playAudio(Float(lastTapTempo/defaultTempo))
     }
     
     @IBAction func stopTouch(sender: AnyObject)
     {
         audioPlayer.stop()
+    }
+    
+    func calculateTempo() -> Double
+    {
+        var totalTime: Double = 0
+        for time in tapIntervals {
+            totalTime += time
+        }
+        
+        let averageBeat = 60.0 / (totalTime / Double(tapIntervals.count))
+        print("tempo: \(averageBeat)")
+        return averageBeat
     }
     
     func playAudio(rate: Float)
@@ -141,10 +171,28 @@ class SampleViewController: UIViewController {
         }
         
         audioPlayer.prepareToPlay()
+        audioPlayer.delegate = self
         audioPlayer.enableRate = true
         audioPlayer.rate = rate
         audioPlayer.play()
         print("rate: \(rate)")
+    }
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool)
+    {
+        if flag == true {
+            // increment row
+            var index = currentSample?.order
+            index! += 1
+            // last row, return
+            if index == sampleArray.count {
+                index! = 0
+            }
+            
+            let indexPath = NSIndexPath(forRow: index!, inSection: 0);
+            self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
+            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+        }
     }
     
     // MARK: - Table view data source
@@ -186,15 +234,9 @@ class SampleViewController: UIViewController {
         cell.setSelected(false, animated: true)
     }
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
-    {
-        print("WDC")
-        if indexPath.row == 0 {
-            print("row 1")
-            cell as! SampleCell
-            cell.setSelected(true, animated: true)
-        }
-    }
+//    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath)
+//    {
+//    }
 
     /*
     // MARK: - Navigation

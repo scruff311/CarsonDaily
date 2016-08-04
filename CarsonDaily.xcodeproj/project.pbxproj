@@ -18,6 +18,8 @@
 		0A82E35B1D53901900D6826F /* Samples.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E35A1D53901900D6826F /* Samples.plist */; };
 		0A82E35D1D5390ED00D6826F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82E35C1D5390ED00D6826F /* TableViewController.swift */; };
 		0A82E3601D53CDCB00D6826F /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82E35F1D53CDCB00D6826F /* Sample.swift */; };
+		0A82E3631D53F13800D6826F /* Faint-Breakdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E3611D53F13800D6826F /* Faint-Breakdown.mp3 */; };
+		0A82E3641D53F13800D6826F /* Faint-Verse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E3621D53F13800D6826F /* Faint-Verse.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		0A82E35A1D53901900D6826F /* Samples.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Samples.plist; sourceTree = "<group>"; };
 		0A82E35C1D5390ED00D6826F /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		0A82E35F1D53CDCB00D6826F /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
+		0A82E3611D53F13800D6826F /* Faint-Breakdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Faint-Breakdown.mp3"; sourceTree = "<group>"; };
+		0A82E3621D53F13800D6826F /* Faint-Verse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Faint-Verse.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +92,9 @@
 		0A82E3561D538EEF00D6826F /* Faint */ = {
 			isa = PBXGroup;
 			children = (
+				0A82E3611D53F13800D6826F /* Faint-Breakdown.mp3 */,
 				0A82E3571D538F6200D6826F /* Faint-Intro.mp3 */,
+				0A82E3621D53F13800D6826F /* Faint-Verse.mp3 */,
 			);
 			name = Faint;
 			sourceTree = "<group>";
@@ -165,7 +171,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A82E3581D538F6200D6826F /* Faint-Intro.mp3 in Resources */,
+				0A82E3631D53F13800D6826F /* Faint-Breakdown.mp3 in Resources */,
 				0A82E34A1D535FF000D6826F /* LaunchScreen.storyboard in Resources */,
+				0A82E3641D53F13800D6826F /* Faint-Verse.mp3 in Resources */,
 				0A82E3471D535FF000D6826F /* Assets.xcassets in Resources */,
 				0A82E35B1D53901900D6826F /* Samples.plist in Resources */,
 				0A82E3451D535FF000D6826F /* Main.storyboard in Resources */,
