@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>blink-182</key>
+	<dict>
+		<key>Stay Together</key>
+		<dict>
+			<key>Order</key>
+			<array>
+				<string>Verse 1</string>
+				<string>Verse 2</string>
+			</array>
+			<key>Tempo</key>
+			<integer>145</integer>
+			<key>Verse 1</key>
+			<string>StayTogether-Verse.mp3</string>
+			<key>Verse 2</key>
+			<string>StayTogether-Verse.mp3</string>
+		</dict>
+	</dict>
 	<key>Linkin Park</key>
 	<dict>
 		<key>Faint</key>

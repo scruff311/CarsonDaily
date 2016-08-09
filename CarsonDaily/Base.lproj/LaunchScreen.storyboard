@@ -14,14 +14,34 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.1215686275" green="0.31764705879999999" blue="0.35294117650000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-background" translatesAutoresizingMaskIntoConstraints="NO" id="1DE-L4-OEf">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch-dots" translatesAutoresizingMaskIntoConstraints="NO" id="tVl-Tl-kL0">
+                                <rect key="frame" x="80" y="204" width="160" height="160"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="tVl-Tl-kL0" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="79P-oW-35a"/>
+                            <constraint firstItem="tVl-Tl-kL0" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cFc-d8-rR9"/>
+                            <constraint firstItem="1DE-L4-OEf" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="-20" id="cLt-98-ZBq"/>
+                            <constraint firstAttribute="trailing" secondItem="1DE-L4-OEf" secondAttribute="trailing" id="duU-H0-HpN"/>
+                            <constraint firstItem="1DE-L4-OEf" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="o9x-kK-L30"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="1DE-L4-OEf" secondAttribute="bottom" id="tAs-tJ-kTm"/>
+                        </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launch-background" width="320" height="568"/>
+        <image name="launch-dots" width="160" height="160"/>
+    </resources>
 </document>

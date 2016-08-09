@@ -146,7 +146,14 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func stopTouch(sender: AnyObject)
     {
+        if audioPlayer == nil {
+            return
+        }
+        
         audioPlayer.stop()
+        
+        tempoButton.enabled = true
+        playButton.enabled = true
     }
     
     func calculateTempo() -> Double
@@ -176,6 +183,9 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         audioPlayer.rate = rate
         audioPlayer.play()
         print("rate: \(rate)")
+        
+        tempoButton.enabled = false
+        playButton.enabled = false
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool)
@@ -188,6 +198,9 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             if index == sampleArray.count {
                 index! = 0
             }
+            
+            tempoButton.enabled = true
+            playButton.enabled = true
             
             let indexPath = NSIndexPath(forRow: index!, inSection: 0);
             self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)

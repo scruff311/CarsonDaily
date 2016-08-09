@@ -20,6 +20,7 @@
 		0A82E3601D53CDCB00D6826F /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82E35F1D53CDCB00D6826F /* Sample.swift */; };
 		0A82E3631D53F13800D6826F /* Faint-Breakdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E3611D53F13800D6826F /* Faint-Breakdown.mp3 */; };
 		0A82E3641D53F13800D6826F /* Faint-Verse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E3621D53F13800D6826F /* Faint-Verse.mp3 */; };
+		0AC654A21D59789400F63B83 /* StayTogether-Verse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC654A11D59789400F63B83 /* StayTogether-Verse.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		0A82E35F1D53CDCB00D6826F /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		0A82E3611D53F13800D6826F /* Faint-Breakdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Faint-Breakdown.mp3"; sourceTree = "<group>"; };
 		0A82E3621D53F13800D6826F /* Faint-Verse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Faint-Verse.mp3"; sourceTree = "<group>"; };
+		0AC654A11D59789400F63B83 /* StayTogether-Verse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "StayTogether-Verse.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 		0A82E3551D538EE500D6826F /* Samples */ = {
 			isa = PBXGroup;
 			children = (
+				0AC654A31D5978A700F63B83 /* Stay Together */,
 				0A82E3561D538EEF00D6826F /* Faint */,
 			);
 			name = Samples;
@@ -110,6 +113,14 @@
 				0A82E35C1D5390ED00D6826F /* TableViewController.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		0AC654A31D5978A700F63B83 /* Stay Together */ = {
+			isa = PBXGroup;
+			children = (
+				0AC654A11D59789400F63B83 /* StayTogether-Verse.mp3 */,
+			);
+			name = "Stay Together";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +155,7 @@
 				TargetAttributes = {
 					0A82E33B1D535FF000D6826F = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = ND6V86PB7N;
 					};
 				};
 			};
@@ -171,6 +183,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A82E3581D538F6200D6826F /* Faint-Intro.mp3 in Resources */,
+				0AC654A21D59789400F63B83 /* StayTogether-Verse.mp3 in Resources */,
 				0A82E3631D53F13800D6826F /* Faint-Breakdown.mp3 in Resources */,
 				0A82E34A1D535FF000D6826F /* LaunchScreen.storyboard in Resources */,
 				0A82E3641D53F13800D6826F /* Faint-Verse.mp3 in Resources */,
@@ -305,7 +318,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CarsonDaily/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonSampler;
 				PRODUCT_NAME = TheCarsonSampler;
@@ -316,7 +331,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = CarsonDaily/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonSampler;
 				PRODUCT_NAME = TheCarsonSampler;
@@ -342,6 +359,7 @@
 				0A82E3501D535FF000D6826F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -39,6 +39,8 @@ class ViewController: UIViewController {
             }
         }
         
+        tableView.rowHeight = 65
+        
         // trick to make sure you don't see seperator lines for cells that don't exist
         tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 1))
     }
