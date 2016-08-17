@@ -218,12 +218,25 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q7W-5O-Po4">
+                                <rect key="frame" x="236" y="358" width="56" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="gbO-3u-N5R"/>
+                                    <constraint firstAttribute="width" constant="56" id="mHM-2l-7ge"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Clear" backgroundImage="stop-button"/>
+                                <connections>
+                                    <action selector="clearTouch:" destination="1O1-Bh-eKD" eventType="touchUpInside" id="04V-P7-RhK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.12156862745098039" green="0.31764705882352939" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="fIr-4o-0rv" firstAttribute="centerX" secondItem="W9i-uV-98e" secondAttribute="centerX" id="0Nn-qs-kMj"/>
                             <constraint firstItem="8bg-Ap-6rX" firstAttribute="leading" secondItem="W9i-uV-98e" secondAttribute="leading" id="0Ps-1F-pct"/>
                             <constraint firstItem="OcQ-zc-c1h" firstAttribute="centerX" secondItem="W9i-uV-98e" secondAttribute="centerX" id="0bP-6K-GvB"/>
+                            <constraint firstItem="Q7W-5O-Po4" firstAttribute="centerX" secondItem="dy0-6x-o0x" secondAttribute="centerX" id="0p7-DJ-cTD"/>
                             <constraint firstItem="dy0-6x-o0x" firstAttribute="top" secondItem="t3Z-eb-Jbi" secondAttribute="bottom" constant="2" id="1Xl-SI-XVJ"/>
                             <constraint firstItem="E6v-FV-IZT" firstAttribute="top" secondItem="aB8-B6-qFP" secondAttribute="bottom" constant="5" id="5a8-7p-7JR"/>
                             <constraint firstItem="pce-8i-Daa" firstAttribute="top" secondItem="OcQ-zc-c1h" secondAttribute="bottom" constant="7" id="6LU-1Y-vnJ"/>
@@ -233,6 +246,7 @@
                             <constraint firstItem="raE-Us-cT2" firstAttribute="centerX" secondItem="W9i-uV-98e" secondAttribute="centerX" id="Cyo-Zt-tqP"/>
                             <constraint firstItem="zW7-3h-QoU" firstAttribute="top" secondItem="5Md-7F-fv2" secondAttribute="bottom" constant="2" id="Djs-jj-OIL"/>
                             <constraint firstItem="fIr-4o-0rv" firstAttribute="top" secondItem="pce-8i-Daa" secondAttribute="bottom" constant="8" id="Eof-TN-y9F"/>
+                            <constraint firstItem="Q7W-5O-Po4" firstAttribute="top" secondItem="dy0-6x-o0x" secondAttribute="bottom" constant="8" id="IBI-Ay-c69"/>
                             <constraint firstItem="6mJ-IA-gEq" firstAttribute="centerX" secondItem="W9i-uV-98e" secondAttribute="centerX" id="K0g-zt-tI8"/>
                             <constraint firstItem="aB8-B6-qFP" firstAttribute="top" secondItem="xQT-J8-ifn" secondAttribute="bottom" constant="5" id="QZ4-xs-JhM"/>
                             <constraint firstItem="t3Z-eb-Jbi" firstAttribute="top" secondItem="8bg-Ap-6rX" secondAttribute="bottom" constant="8" id="Rmm-Sk-eyV"/>
@@ -255,6 +269,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="clearButton" destination="Q7W-5O-Po4" id="foe-PN-YcY"/>
                         <outlet property="playButton" destination="fIr-4o-0rv" id="S2g-IJ-KPu"/>
                         <outlet property="sampleTempoLbl" destination="zW7-3h-QoU" id="S0u-ZX-QSE"/>
                         <outlet property="stopButton" destination="xQT-J8-ifn" id="Nba-gd-QQf"/>

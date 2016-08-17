@@ -63,7 +63,8 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
                 sampleArray.append(newSample)
             }
         }
-        currentSample = sampleArray[0]
+        // get the initial sampler ready to play
+        loadSampleAtIndex(0)
         
         // trick to make sure you don't see seperator lines for cells that don't exist
         tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 1))
@@ -123,15 +124,18 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
                 let beatFloat = Float(beatInt) / 10.0
                 tapTempoLabel.text = String(beatFloat)
                 print("4")
+                
+                // calculate and set tempo
+                print(tapIntervals)
+                let averageTempo = calculateTempo()
+                setPlayRate(Float(averageTempo/defaultTempo))
             }
             
         }
         // else 3 intervals recorded, calculate bpm and play sound
         else {
             print("GO!")
-            print(tapIntervals)
-            let averageBeat = calculateTempo()
-            playAudio(Float(averageBeat/defaultTempo))
+            playAudio()
             
             tapIntervals.removeAll()
             lastTapTime = nil
@@ -141,7 +145,8 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBAction func playTouch(sender: AnyObject)
     {
-        playAudio(Float(lastTapTempo/defaultTempo))
+        setPlayRate(Float(lastTapTempo/defaultTempo))
+        playAudio()
     }
     
     @IBAction func stopTouch(sender: AnyObject)
@@ -151,9 +156,16 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         }
         
         audioPlayer.stop()
+        audioPlayer.currentTime = 0
         
         tempoButton.enabled = true
         playButton.enabled = true
+    }
+    
+    @IBAction func clearTouch(sender: AnyObject)
+    {
+        lastTapTempo = defaultTempo
+        tapTempoLabel.text = ""
     }
     
     func calculateTempo() -> Double
@@ -168,8 +180,18 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         return averageBeat
     }
     
-    func playAudio(rate: Float)
+    func setPlayRate(rate: Float)
     {
+        audioPlayer.rate = rate
+        print("rate: \(rate)")
+    }
+    
+    func loadSampleAtIndex(index: Int)
+    {
+        let indexPath = NSIndexPath(forRow: index, inSection: 0);
+        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
+        self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+        
         do {
             try audioPlayer = AVAudioPlayer(contentsOfURL: currentSample!.fileUrl)
         }
@@ -177,12 +199,14 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             print("audio error")
         }
         
-        audioPlayer.prepareToPlay()
         audioPlayer.delegate = self
         audioPlayer.enableRate = true
-        audioPlayer.rate = rate
+        audioPlayer.prepareToPlay()
+    }
+    
+    func playAudio()
+    {
         audioPlayer.play()
-        print("rate: \(rate)")
         
         tempoButton.enabled = false
         playButton.enabled = false
@@ -199,12 +223,10 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
                 index! = 0
             }
             
+            loadSampleAtIndex(index!)
+            
             tempoButton.enabled = true
             playButton.enabled = true
-            
-            let indexPath = NSIndexPath(forRow: index!, inSection: 0);
-            self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
-            self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         }
     }
     

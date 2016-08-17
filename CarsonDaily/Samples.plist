@@ -42,5 +42,19 @@
 			<string>Faint-Breakdown.mp3</string>
 		</dict>
 	</dict>
+	<key>Paramore</key>
+	<dict>
+		<key>Misery Business</key>
+		<dict>
+			<key>Order</key>
+			<array>
+				<string>Intro</string>
+			</array>
+			<key>Tempo</key>
+			<integer>172</integer>
+			<key>Intro</key>
+			<string>Misery-Intro.mp3</string>
+		</dict>
+	</dict>
 </dict>
 </plist>

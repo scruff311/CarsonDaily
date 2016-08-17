@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A5B0E6A1D64FD3500AEBD86 /* Misery-Intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A5B0E691D64FD3500AEBD86 /* Misery-Intro.mp3 */; };
 		0A82E3401D535FF000D6826F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82E33F1D535FF000D6826F /* AppDelegate.swift */; };
 		0A82E3421D535FF000D6826F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82E3411D535FF000D6826F /* ViewController.swift */; };
 		0A82E3451D535FF000D6826F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E3431D535FF000D6826F /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A5B0E691D64FD3500AEBD86 /* Misery-Intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Misery-Intro.mp3"; sourceTree = "<group>"; };
 		0A82E33C1D535FF000D6826F /* TheCarsonSampler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheCarsonSampler.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A82E33F1D535FF000D6826F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A82E3411D535FF000D6826F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A5B0E6B1D64FD3A00AEBD86 /* Misery Business */ = {
+			isa = PBXGroup;
+			children = (
+				0A5B0E691D64FD3500AEBD86 /* Misery-Intro.mp3 */,
+			);
+			name = "Misery Business";
+			sourceTree = "<group>";
+		};
 		0A82E3331D535FF000D6826F = {
 			isa = PBXGroup;
 			children = (
@@ -86,8 +96,9 @@
 		0A82E3551D538EE500D6826F /* Samples */ = {
 			isa = PBXGroup;
 			children = (
-				0AC654A31D5978A700F63B83 /* Stay Together */,
 				0A82E3561D538EEF00D6826F /* Faint */,
+				0A5B0E6B1D64FD3A00AEBD86 /* Misery Business */,
+				0AC654A31D5978A700F63B83 /* Stay Together */,
 			);
 			name = Samples;
 			sourceTree = "<group>";
@@ -185,6 +196,7 @@
 				0A82E3581D538F6200D6826F /* Faint-Intro.mp3 in Resources */,
 				0AC654A21D59789400F63B83 /* StayTogether-Verse.mp3 in Resources */,
 				0A82E3631D53F13800D6826F /* Faint-Breakdown.mp3 in Resources */,
+				0A5B0E6A1D64FD3500AEBD86 /* Misery-Intro.mp3 in Resources */,
 				0A82E34A1D535FF000D6826F /* LaunchScreen.storyboard in Resources */,
 				0A82E3641D53F13800D6826F /* Faint-Verse.mp3 in Resources */,
 				0A82E3471D535FF000D6826F /* Assets.xcassets in Resources */,
