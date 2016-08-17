@@ -269,7 +269,6 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
-                        <outlet property="clearButton" destination="Q7W-5O-Po4" id="foe-PN-YcY"/>
                         <outlet property="playButton" destination="fIr-4o-0rv" id="S2g-IJ-KPu"/>
                         <outlet property="sampleTempoLbl" destination="zW7-3h-QoU" id="S0u-ZX-QSE"/>
                         <outlet property="stopButton" destination="xQT-J8-ifn" id="Nba-gd-QQf"/>

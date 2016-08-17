@@ -192,11 +192,16 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
         self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         
+        setSampleToAudioPlayer()
+    }
+    
+    func setSampleToAudioPlayer()
+    {
         do {
-            try audioPlayer = AVAudioPlayer(contentsOfURL: currentSample!.fileUrl)
+        try audioPlayer = AVAudioPlayer(contentsOfURL: currentSample!.fileUrl)
         }
         catch {
-            print("audio error")
+        print("audio error")
         }
         
         audioPlayer.delegate = self
@@ -261,6 +266,8 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         
         // grab sample for this row
         currentSample = cell.sample
+        
+        setSampleToAudioPlayer()
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
