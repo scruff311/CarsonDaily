@@ -18,6 +18,8 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     @IBOutlet weak var stopButton: UIButton!
     @IBOutlet weak var sampleTempoLbl: UILabel!
     @IBOutlet weak var tapTempoLabel: UILabel!
+    @IBOutlet weak var flashTempoView: UIView!
+    @IBOutlet weak var noTouchyLbl: UILabel!
     
     var songTitle: String!
     var sampleDict: [String: AnyObject]!
@@ -28,6 +30,7 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     var lastTapTempo: Double!
     var lastTapTime: NSDate!
     var tapIntervals: [Double]!
+    var flashColor: UIColor!
     
     // MARK: - View
     
@@ -35,6 +38,8 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     {
         print("VDL")
         super.viewDidLoad()
+        
+        UIApplication.sharedApplication().idleTimerDisabled = true
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = songTitle
@@ -44,12 +49,16 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         sampleTempoLbl.layer.cornerRadius = 5
         tapTempoLabel.layer.masksToBounds = true
         tapTempoLabel.layer.cornerRadius = 5
+        flashTempoView.layer.masksToBounds = true
+        flashTempoView.layer.cornerRadius = flashTempoView.bounds.size.width / 2 //make it a circle
         
         // create array of sample objects
         defaultTempo = sampleDict["Tempo"] as! Double
         lastTapTempo = defaultTempo
         sampleTempoLbl.text = String(defaultTempo)
         tapTempoLabel.text = ""
+        
+        flashColor = UIColor.init(red: 241/255.0, green: 180/255.0, blue: 111/255.0, alpha: 1)
         
         let sampleOrder = sampleDict["Order"] as! [String]
         for i in 0 ..< sampleOrder.count {
@@ -88,6 +97,9 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     {
         // hasn't been 4 taps yet
         if tapIntervals?.count < 3 {
+            // flash tempo light
+            flashTempoLight(0)
+            
             // first tap, save and return
             if lastTapTime == nil {
                 lastTapTime = NSDate()
@@ -116,21 +128,18 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             }
             else {
                 tempoButton.setTitle("GO!", forState: UIControlState.Normal)
+                // calculate and set tempo
                 var averageBeat = calculateTempo()
                 lastTapTempo = averageBeat
+                setPlayRate(Float(averageBeat/defaultTempo))
+                
                 // trim decimal for label display
                 averageBeat *= 10
                 let beatInt = Int(averageBeat)
                 let beatFloat = Float(beatInt) / 10.0
                 tapTempoLabel.text = String(beatFloat)
                 print("4")
-                
-                // calculate and set tempo
-                print(tapIntervals)
-                let averageTempo = calculateTempo()
-                setPlayRate(Float(averageTempo/defaultTempo))
             }
-            
         }
         // else 3 intervals recorded, calculate bpm and play sound
         else {
@@ -213,8 +222,15 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     {
         audioPlayer.play()
         
+        // start flashing the tempo light
+        let numberOfBeats = (defaultTempo / 60.0) * audioPlayer.duration
+        let numberOfBeatsInt = Int(numberOfBeats + 0.5) //round it off
+        print("number of beats = \(numberOfBeats), Int = \(numberOfBeatsInt)")
+        flashTempoLight(Float(numberOfBeatsInt))
+        
         tempoButton.enabled = false
         playButton.enabled = false
+        noTouchyLbl.hidden = true
     }
     
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool)
@@ -232,7 +248,23 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             
             tempoButton.enabled = true
             playButton.enabled = true
+            noTouchyLbl.hidden = false
         }
+    }
+    
+    func flashTempoLight(repeatCount: Float)
+    {
+        // animate flash tempo view
+        flashTempoView.backgroundColor = flashColor
+        UIView.animateWithDuration(60/lastTapTempo,
+                                   delay: 0,
+                                   options: [.CurveEaseInOut, .Repeat],
+                                   animations: {
+                                    UIView.setAnimationRepeatCount(repeatCount)
+                                    self.flashTempoView.backgroundColor = UIColor.blackColor()
+            }, completion: { (complete) in
+                // something to do
+        })
     }
     
     // MARK: - Table view data source

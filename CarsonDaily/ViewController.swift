@@ -19,6 +19,9 @@ class ViewController: UIViewController {
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        UIApplication.sharedApplication().idleTimerDisabled = false
+
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.title = "The Carson Sampler"
         
