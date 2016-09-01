@@ -1,0 +1,10 @@
+.DS_Store
+
+# Xcode
+*.xcscheme
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+*.xcworkspacedata
+*.xcbkptlist
+xcschememanagement.plist
