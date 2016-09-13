@@ -130,6 +130,7 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
                 tempoButton.setTitle("GO!", forState: UIControlState.Normal)
                 // calculate and set tempo
                 var averageBeat = calculateTempo()
+                let averageInterval = 60.0 / averageBeat
                 lastTapTempo = averageBeat
                 setPlayRate(Float(averageBeat/defaultTempo))
                 
@@ -139,16 +140,30 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
                 let beatFloat = Float(beatInt) / 10.0
                 tapTempoLabel.text = String(beatFloat)
                 print("4")
+                
+                // play audio after average time interval
+                NSTimer.scheduledTimerWithTimeInterval(averageInterval,
+                                                       target: self,
+                                                       selector: #selector(SampleViewController.playAudio),
+                                                       userInfo: nil,
+                                                       repeats: false)
+                
+                // reset tempo vars
+                tapIntervals.removeAll()
+                lastTapTime = nil
+                // disable tempo button
+                tempoButton.setTitle("4", forState: UIControlState.Normal)
+                tempoButton.enabled = false
             }
         }
         // else 3 intervals recorded, calculate bpm and play sound
         else {
-            print("GO!")
-            playAudio()
+//            print("GO!")
+//            playAudio()
             
-            tapIntervals.removeAll()
-            lastTapTime = nil
-            tempoButton.setTitle("4", forState: UIControlState.Normal)
+//            tapIntervals.removeAll()
+//            lastTapTime = nil
+//            tempoButton.setTitle("4", forState: UIControlState.Normal)
         }
     }
     
@@ -178,14 +193,27 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         tapTempoLabel.text = ""
     }
     
+    func flashTempoLight(repeatCount: Float)
+    {
+        // animate flash tempo view
+        flashTempoView.backgroundColor = flashColor
+        UIView.animateWithDuration(60/lastTapTempo,
+                                   delay: 0,
+                                   options: [.CurveEaseInOut, .Repeat],
+                                   animations: {
+                                    UIView.setAnimationRepeatCount(repeatCount)
+                                    self.flashTempoView.backgroundColor = UIColor.blackColor()
+            }, completion: { (complete) in
+                // something to do
+        })
+    }
+    
+    //MARK: - Audio Player
+    
     func calculateTempo() -> Double
     {
-        var totalTime: Double = 0
-        for time in tapIntervals {
-            totalTime += time
-        }
-        
-        let averageBeat = 60.0 / (totalTime / Double(tapIntervals.count))
+        let averageInterval = tapIntervals.reduce(0, combine: +) / Double(tapIntervals.count)
+        let averageBeat = 60.0 / averageInterval
         print("tempo: \(averageBeat)")
         return averageBeat
     }
@@ -251,21 +279,6 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             playButton.enabled = true
             noTouchyLbl.hidden = false
         }
-    }
-    
-    func flashTempoLight(repeatCount: Float)
-    {
-        // animate flash tempo view
-        flashTempoView.backgroundColor = flashColor
-        UIView.animateWithDuration(60/lastTapTempo,
-                                   delay: 0,
-                                   options: [.CurveEaseInOut, .Repeat],
-                                   animations: {
-                                    UIView.setAnimationRepeatCount(repeatCount)
-                                    self.flashTempoView.backgroundColor = UIColor.blackColor()
-            }, completion: { (complete) in
-                // something to do
-        })
     }
     
     // MARK: - Table view data source
