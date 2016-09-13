@@ -169,6 +169,7 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         
         tempoButton.enabled = true
         playButton.enabled = true
+        flashTempoView.layer.removeAllAnimations()
     }
     
     @IBAction func clearTouch(sender: AnyObject)
