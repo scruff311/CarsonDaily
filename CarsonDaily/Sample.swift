@@ -13,7 +13,7 @@ class Sample: NSObject {
     var title: String!
     var fileName: String!
     var order: Int!
-    var fileUrl: NSURL!
+    var fileUrl: URL!
 
     convenience init(_ title: String, fileName: String, order: Int)
     {
@@ -24,9 +24,9 @@ class Sample: NSObject {
         self.order = order
         
         // get file URL
-        let samplePieces = fileName.componentsSeparatedByString(".")
-        let path = NSBundle.mainBundle().pathForResource(samplePieces[0], ofType: samplePieces.last)
-        self.fileUrl = NSURL(fileURLWithPath: path!)
+        let samplePieces = fileName.components(separatedBy: ".")
+        let path = Bundle.main.path(forResource: samplePieces[0], ofType: samplePieces.last)
+        self.fileUrl = URL(fileURLWithPath: path!)
     }
     
 }

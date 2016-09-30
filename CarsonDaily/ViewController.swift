@@ -20,12 +20,12 @@ class ViewController: UIViewController {
     {
         super.viewDidLoad()
         
-        UIApplication.sharedApplication().idleTimerDisabled = false
+        UIApplication.shared.isIdleTimerDisabled = false
 
         // Do any additional setup after loading the view, typically from a nib.
         self.navigationItem.title = "The Carson Sampler"
         
-        let path = NSBundle.mainBundle().pathForResource("Samples", ofType: "plist")!
+        let path = Bundle.main.path(forResource: "Samples", ofType: "plist")!
         artistDict = NSDictionary(contentsOfFile: path) as! [String: [String: [String: AnyObject]]]
         
         for (artist, songs) in artistDict {
@@ -45,7 +45,7 @@ class ViewController: UIViewController {
         tableView.rowHeight = 65
         
         // trick to make sure you don't see seperator lines for cells that don't exist
-        tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 1))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
     }
     
     override func didReceiveMemoryWarning()
@@ -56,37 +56,39 @@ class ViewController: UIViewController {
     
     // MARK: - Table view data source
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int
     {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // #warning Incomplete implementation, return the number of rows
         return songsArray!.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SongCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SongCell", for: indexPath)
         
         // Configure the cell...
         let songDict = songsArray![indexPath.row]
-        let artist = Array(songDict.keys)[0]
+        let artistArray = Array(songDict.keys)
+        let artist = artistArray[0]
         cell.textLabel?.text = artist
         cell.detailTextLabel?.text = songDict[artist]
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath)
     {
         // get song and artist
         let songDict = songsArray![indexPath.row]
-        let artist = Array(songDict.keys)[0]
+        let artistArray = Array(songDict.keys)
+        let artist = artistArray[0]
         selectedSong = songDict[artist]
         
         // retrieve sample dict using song and artist
@@ -94,15 +96,15 @@ class ViewController: UIViewController {
         selectedSamples = songsDict![selectedSong!]
         
         // perform segue
-        self.performSegueWithIdentifier("SampleSegue", sender: nil)
+        self.performSegue(withIdentifier: "SampleSegue", sender: nil)
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         if segue.identifier == "SampleSegue" {
-            let sampleVC = segue.destinationViewController as! SampleViewController
+            let sampleVC = segue.destination as! SampleViewController
             sampleVC.songTitle = selectedSong
             sampleVC.sampleDict = selectedSamples
         }

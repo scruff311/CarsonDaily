@@ -9,6 +9,17 @@
 import UIKit
 import QuartzCore
 import AVFoundation
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class SampleViewController: UIViewController, AVAudioPlayerDelegate {
 
@@ -28,7 +39,7 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     var audioPlayer: AVAudioPlayer!
     var defaultTempo: Double!
     var lastTapTempo: Double!
-    var lastTapTime: NSDate!
+    var lastTapTime: Date!
     var tapIntervals: [Double]!
     var flashColor: UIColor!
     
@@ -39,11 +50,11 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         print("VDL")
         super.viewDidLoad()
         
-        UIApplication.sharedApplication().idleTimerDisabled = true
+        UIApplication.shared.isIdleTimerDisabled = true
 
         // Do any additional setup after loading the view.
         self.navigationItem.title = songTitle
-        navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        navigationController?.navigationBar.tintColor = UIColor.white
         
         sampleTempoLbl.layer.masksToBounds = true
         sampleTempoLbl.layer.cornerRadius = 5
@@ -76,14 +87,14 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         loadSampleAtIndex(0)
         
         // trick to make sure you don't see seperator lines for cells that don't exist
-        tableView.tableFooterView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 1))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
     }
     
-    override func viewDidAppear(animated: Bool)
+    override func viewDidAppear(_ animated: Bool)
     {
         print("VDA")
-        let path = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.selectRowAtIndexPath(path, animated: true, scrollPosition: UITableViewScrollPosition.None)
+        let path = IndexPath(row: 0, section: 0)
+        self.tableView.selectRow(at: path, animated: true, scrollPosition: UITableViewScrollPosition.none)
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,7 +104,7 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     
     // MARK: - Buttons
     
-    @IBAction func tempoTouch(sender: AnyObject)
+    @IBAction func tempoTouch(_ sender: AnyObject)
     {
         // hasn't been 4 taps yet
         if tapIntervals?.count < 3 {
@@ -102,8 +113,8 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             
             // first tap, save and return
             if lastTapTime == nil {
-                lastTapTime = NSDate()
-                tempoButton.setTitle("3", forState: UIControlState.Normal)
+                lastTapTime = Date()
+                tempoButton.setTitle("3", for: UIControlState())
                 print("1")
                 return
             }
@@ -113,21 +124,21 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             // add first tap interval to array
             if tapIntervals == nil || tapIntervals?.count == 0 {
                 tapIntervals = [timeInterval]
-                lastTapTime = NSDate()
-                tempoButton.setTitle("2", forState: UIControlState.Normal)
+                lastTapTime = Date()
+                tempoButton.setTitle("2", for: UIControlState())
                 print("2")
                 return
             }
 
             // add 2nd and 3rd tap intervals to array
             tapIntervals.append(timeInterval)
-            lastTapTime = NSDate()
+            lastTapTime = Date()
             if tapIntervals.count == 2 {
-                tempoButton.setTitle("1", forState: UIControlState.Normal)
+                tempoButton.setTitle("1", for: UIControlState())
                 print("3")
             }
             else {
-                tempoButton.setTitle("GO!", forState: UIControlState.Normal)
+                tempoButton.setTitle("GO!", for: UIControlState())
                 // calculate and set tempo
                 var averageBeat = calculateTempo()
                 let averageInterval = 60.0 / averageBeat
@@ -142,7 +153,7 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
                 print("4")
                 
                 // play audio after average time interval
-                NSTimer.scheduledTimerWithTimeInterval(averageInterval,
+                Timer.scheduledTimer(timeInterval: averageInterval,
                                                        target: self,
                                                        selector: #selector(SampleViewController.playAudio),
                                                        userInfo: nil,
@@ -152,8 +163,8 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
                 tapIntervals.removeAll()
                 lastTapTime = nil
                 // disable tempo button
-                tempoButton.setTitle("4", forState: UIControlState.Normal)
-                tempoButton.enabled = false
+                tempoButton.setTitle("4", for: UIControlState())
+                tempoButton.isEnabled = false
             }
         }
         // else 3 intervals recorded, calculate bpm and play sound
@@ -167,13 +178,13 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         }
     }
     
-    @IBAction func playTouch(sender: AnyObject)
+    @IBAction func playTouch(_ sender: AnyObject)
     {
         setPlayRate(Float(lastTapTempo/defaultTempo))
         playAudio()
     }
     
-    @IBAction func stopTouch(sender: AnyObject)
+    @IBAction func stopTouch(_ sender: AnyObject)
     {
         if audioPlayer == nil {
             return
@@ -182,27 +193,27 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         audioPlayer.stop()
         audioPlayer.currentTime = 0
         
-        tempoButton.enabled = true
-        playButton.enabled = true
+        tempoButton.isEnabled = true
+        playButton.isEnabled = true
         flashTempoView.layer.removeAllAnimations()
     }
     
-    @IBAction func clearTouch(sender: AnyObject)
+    @IBAction func clearTouch(_ sender: AnyObject)
     {
         lastTapTempo = defaultTempo
         tapTempoLabel.text = ""
     }
     
-    func flashTempoLight(repeatCount: Float)
+    func flashTempoLight(_ repeatCount: Float)
     {
         // animate flash tempo view
         flashTempoView.backgroundColor = flashColor
-        UIView.animateWithDuration(60/lastTapTempo,
+        UIView.animate(withDuration: 60/lastTapTempo,
                                    delay: 0,
-                                   options: [.CurveEaseInOut, .Repeat],
+                                   options: .repeat,
                                    animations: {
                                     UIView.setAnimationRepeatCount(repeatCount)
-                                    self.flashTempoView.backgroundColor = UIColor.blackColor()
+                                    self.flashTempoView.backgroundColor = UIColor.black
             }, completion: { (complete) in
                 // something to do
         })
@@ -212,22 +223,22 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     
     func calculateTempo() -> Double
     {
-        let averageInterval = tapIntervals.reduce(0, combine: +) / Double(tapIntervals.count)
+        let averageInterval = tapIntervals.reduce(0, +) / Double(tapIntervals.count)
         let averageBeat = 60.0 / averageInterval
         print("tempo: \(averageBeat)")
         return averageBeat
     }
     
-    func setPlayRate(rate: Float)
+    func setPlayRate(_ rate: Float)
     {
         audioPlayer.rate = rate
         print("rate: \(rate)")
     }
     
-    func loadSampleAtIndex(index: Int)
+    func loadSampleAtIndex(_ index: Int)
     {
-        let indexPath = NSIndexPath(forRow: index, inSection: 0);
-        self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: UITableViewScrollPosition.None)
+        let indexPath = IndexPath(row: index, section: 0);
+        self.tableView.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
         self.tableView(tableView, didSelectRowAtIndexPath: indexPath)
         
         setSampleToAudioPlayer()
@@ -236,12 +247,14 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
     func setSampleToAudioPlayer()
     {
         do {
-        try audioPlayer = AVAudioPlayer(contentsOfURL: currentSample!.fileUrl)
+            try audioPlayer = AVAudioPlayer(contentsOf: currentSample!.fileUrl as URL)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }
         catch {
-        print("audio error")
+            print("audio error")
         }
         
+        audioPlayer.volume = 1
         audioPlayer.delegate = self
         audioPlayer.enableRate = true
         audioPlayer.prepareToPlay()
@@ -257,12 +270,12 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         print("number of beats = \(numberOfBeats), Int = \(numberOfBeatsInt)")
         flashTempoLight(Float(numberOfBeatsInt))
         
-        tempoButton.enabled = false
-        playButton.enabled = false
-        noTouchyLbl.hidden = true
+        tempoButton.isEnabled = false
+        playButton.isEnabled = false
+        noTouchyLbl.isHidden = true
     }
     
-    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool)
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool)
     {
         if flag == true {
             // increment row
@@ -275,37 +288,37 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
             
             loadSampleAtIndex(index!)
             
-            tempoButton.enabled = true
-            playButton.enabled = true
-            noTouchyLbl.hidden = false
+            tempoButton.isEnabled = true
+            playButton.isEnabled = true
+            noTouchyLbl.isHidden = false
         }
     }
     
     // MARK: - Table view data source
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    func numberOfSectionsInTableView(_ tableView: UITableView) -> Int
     {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         // #warning Incomplete implementation, return the number of rows
         return sampleArray.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell
     {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SampleCell", forIndexPath: indexPath) as! SampleCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "SampleCell", for: indexPath) as! SampleCell
         
         // Configure the cell...
-        cell.sample = sampleArray[indexPath.row]
+        cell.sample = sampleArray[(indexPath as NSIndexPath).row]
         
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAtIndexPath indexPath: IndexPath)
     {
         let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SampleCell
         cell.setSelected(true, animated: true)
@@ -316,7 +329,7 @@ class SampleViewController: UIViewController, AVAudioPlayerDelegate {
         setSampleToAudioPlayer()
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didDeselectRowAtIndexPath indexPath: IndexPath)
     {
         let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! SampleCell
         cell.setSelected(false, animated: true)

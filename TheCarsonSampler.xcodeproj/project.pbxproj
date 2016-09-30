@@ -21,6 +21,7 @@
 		0A82E3601D53CDCB00D6826F /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A82E35F1D53CDCB00D6826F /* Sample.swift */; };
 		0A82E3631D53F13800D6826F /* Faint-Breakdown.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E3611D53F13800D6826F /* Faint-Breakdown.mp3 */; };
 		0A82E3641D53F13800D6826F /* Faint-Verse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A82E3621D53F13800D6826F /* Faint-Verse.mp3 */; };
+		0AA5376D1D9EEE2000581D38 /* Flowing-Intro.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AA5376C1D9EEE2000581D38 /* Flowing-Intro.mp3 */; };
 		0AC654A21D59789400F63B83 /* StayTogether-Verse.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0AC654A11D59789400F63B83 /* StayTogether-Verse.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		0A82E35F1D53CDCB00D6826F /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		0A82E3611D53F13800D6826F /* Faint-Breakdown.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Faint-Breakdown.mp3"; sourceTree = "<group>"; };
 		0A82E3621D53F13800D6826F /* Faint-Verse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Faint-Verse.mp3"; sourceTree = "<group>"; };
+		0AA5376C1D9EEE2000581D38 /* Flowing-Intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Flowing-Intro.mp3"; sourceTree = "<group>"; };
 		0AC654A11D59789400F63B83 /* StayTogether-Verse.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "StayTogether-Verse.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				0A82E3561D538EEF00D6826F /* Faint */,
+				0AA5376E1D9EEE2300581D38 /* Flowing */,
 				0A5B0E6B1D64FD3A00AEBD86 /* Misery Business */,
 				0AC654A31D5978A700F63B83 /* Stay Together */,
 			);
@@ -124,6 +127,14 @@
 				0A82E35C1D5390ED00D6826F /* TableViewController.swift */,
 			);
 			name = Classes;
+			sourceTree = "<group>";
+		};
+		0AA5376E1D9EEE2300581D38 /* Flowing */ = {
+			isa = PBXGroup;
+			children = (
+				0AA5376C1D9EEE2000581D38 /* Flowing-Intro.mp3 */,
+			);
+			name = Flowing;
 			sourceTree = "<group>";
 		};
 		0AC654A31D5978A700F63B83 /* Stay Together */ = {
@@ -167,6 +178,7 @@
 					0A82E33B1D535FF000D6826F = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = ND6V86PB7N;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -197,6 +209,7 @@
 				0AC654A21D59789400F63B83 /* StayTogether-Verse.mp3 in Resources */,
 				0A82E3631D53F13800D6826F /* Faint-Breakdown.mp3 in Resources */,
 				0A5B0E6A1D64FD3500AEBD86 /* Misery-Intro.mp3 in Resources */,
+				0AA5376D1D9EEE2000581D38 /* Flowing-Intro.mp3 in Resources */,
 				0A82E34A1D535FF000D6826F /* LaunchScreen.storyboard in Resources */,
 				0A82E3641D53F13800D6826F /* Faint-Verse.mp3 in Resources */,
 				0A82E3471D535FF000D6826F /* Assets.xcassets in Resources */,
@@ -264,6 +277,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -309,6 +323,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -336,6 +351,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonSampler;
 				PRODUCT_NAME = TheCarsonSampler;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -349,6 +365,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.translateabroad.CarsonSampler;
 				PRODUCT_NAME = TheCarsonSampler;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
